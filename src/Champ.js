@@ -4,10 +4,6 @@ const SQUARE_ASSET_URL =
 const Champ = ({ champs, setIndivData }) => {
   const setCurrentChamp = (champ) => {
     setIndivData(champ);
-
-    Object.entries(champs).map((champ) => {
-      console.log(champ);
-    });
   };
 
   return (

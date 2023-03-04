@@ -45,9 +45,9 @@ const Home = () => {
         <h1>hello</h1>
       </div>
 
-      <div className="right-container">
+      {/* <div className="right-container">
         {indivData && <ChampInfo indivData={indivData} />}
-      </div>
+      </div> */}
     </div>
   );
 };
