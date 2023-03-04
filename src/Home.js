@@ -13,12 +13,15 @@ const Home = () => {
   const [champs, setChamps] = useState({});
 
   useEffect(() => {
+    console.log("useEffect");
     const getChampData = async () => {
       const res = await fetch(API_URL);
       const champData = await res.json();
 
       setChamps(champData.data);
     };
+
+    console.log("end fetch");
 
     return () => {
       getChampData();
