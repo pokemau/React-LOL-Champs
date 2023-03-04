@@ -22,10 +22,6 @@ const Home = () => {
     };
 
     console.log("end fetch");
-
-    return () => {
-      getChampData();
-    };
   }, []);
 
   function showData() {
