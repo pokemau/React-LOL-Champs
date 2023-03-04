@@ -1,6 +1,6 @@
 import JsonData from "./assets/LOL_Info/champ_info/championFull.json";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 //components
 import Champ from "./Champ";
@@ -10,42 +10,41 @@ const API_URL =
   "http://ddragon.leagueoflegends.com/cdn/13.4.1/data/en_US/champion.json";
 
 const Home = () => {
-  async function getChampData() {
-    const res = await fetch(API_URL);
-    const champData = await res.json();
+  const [champs, setChamps] = useState({});
 
-    return champData;
+  useEffect(() => {
+    const getChampData = async () => {
+      const res = await fetch(API_URL);
+      const champData = await res.json();
+
+      setChamps(champData.data);
+    };
+
+    return () => {
+      getChampData();
+    };
+  }, []);
+
+  function showData() {
+    console.log(champs);
   }
 
-  async function showData() {
-    const champData = await getChampData();
+  const champData = JsonData.data;
 
-    console.log(champData);
-  }
+  //current champion clicked
+  const [indivData, setIndivData] = useState();
 
   return (
-    <div>
-      <button onClick={showData}>CLICK</button>
-      <h1>hello</h1>
+    <div className="body-container">
+      <div className="left-container">
+        <Champ champs={champs} setIndivData={setIndivData} />
+      </div>
+
+      <div className="right-container">
+        {indivData && <ChampInfo indivData={indivData} />}
+      </div>
     </div>
   );
-
-  // const champData = JsonData.data;
-
-  // //current champion clicked
-  // const [indivData, setIndivData] = useState();
-
-  // return (
-  //   <div className="body-container">
-  //     <div className="left-container">
-  //       <Champ champData={champData} setIndivData={setIndivData}/>
-  //     </div>
-
-  //     <div className="right-container">
-  //       {indivData && <ChampInfo indivData={indivData}/>}
-  //     </div>
-  //   </div>
-  // );
 };
 
 export default Home;
