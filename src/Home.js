@@ -22,6 +22,8 @@ const Home = () => {
     };
 
     console.log("end fetch");
+
+    getChampData();
   }, []);
 
   function showData() {
