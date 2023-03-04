@@ -40,6 +40,11 @@ const Home = () => {
         <Champ champs={champs} setIndivData={setIndivData} />
       </div>
 
+      <div>
+        <button onClick={showData}>CLICK</button>
+        <h1>hello</h1>
+      </div>
+
       <div className="right-container">
         {indivData && <ChampInfo indivData={indivData} />}
       </div>
